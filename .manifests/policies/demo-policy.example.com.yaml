@@ -1,21 +1,9 @@
+# yaml-language-server: $schema=https://github.com/eddycharly/generic-auth-server/blob/main/.schemas/json/authorizationpolicy-generic-v1alpha1.json
 apiVersion: generic.kyverno.io/v1alpha1
 kind: AuthorizationPolicy
 metadata:
   name: demo-policy.example.com
 spec:
-  # variables:
-  # - name: force_authorized
-  #   expression: object.attributes.request.http.headers[?"x-force-authorized"].orValue("") in ["enabled", "true"]
-  # - name: force_unauthenticated
-  #   expression: object.attributes.request.http.headers[?"x-force-unauthenticated"].orValue("") in ["enabled", "true"]
-  # - name: metadata
-  #   expression: '{"my-new-metadata": "my-new-value"}'
   authorizations:
   - expression: >
-      model.Response{
-        Header: {
-          "foo": ["bar"]
-        },
-        StatusCode: 401,
-        Body: b"bye bye"
-      }
+      auth.Response(401, "bye bye")

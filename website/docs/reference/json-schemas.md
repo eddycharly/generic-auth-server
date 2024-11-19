@@ -14,5 +14,18 @@ In VS code, simply add a comment on top of your YAML resources.
 
 ```yaml
 # yaml-language-server: $schema=https://github.com/eddycharly/generic-auth-server/blob/main/.schemas/json/authorizationpolicy-generic-v1alpha1.json
-TODO
+apiVersion: generic.kyverno.io/v1alpha1
+kind: AuthorizationPolicy
+metadata:
+  name: demo-policy.example.com
+spec:
+  authorizations:
+  - expression: >
+      "bar" in object.Header("foo")
+        ? auth
+            .Response(401)
+            .WithBody("bye")
+            .WithHeader("xxx", "yyy")
+        : auth
+            .Response(200)
 ```

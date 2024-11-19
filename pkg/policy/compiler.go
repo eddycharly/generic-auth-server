@@ -5,8 +5,8 @@ import (
 
 	"github.com/eddycharly/generic-auth-server/apis/v1alpha1"
 	engine "github.com/eddycharly/generic-auth-server/pkg/authz/cel"
+	"github.com/eddycharly/generic-auth-server/pkg/authz/cel/libs/auth"
 	"github.com/eddycharly/generic-auth-server/pkg/authz/cel/libs/http"
-	"github.com/eddycharly/generic-auth-server/pkg/authz/cel/libs/model"
 	"github.com/eddycharly/generic-auth-server/pkg/authz/cel/utils"
 	"github.com/google/cel-go/cel"
 	"github.com/google/cel-go/common/types"
@@ -20,7 +20,7 @@ const (
 	ObjectKey    = "object"
 )
 
-type PolicyFunc func(*http.Request) (*model.Response, error)
+type PolicyFunc func(*http.Request) (*auth.Response, error)
 
 type Compiler interface {
 	Compile(v1alpha1.AuthorizationPolicy) (PolicyFunc, error)
@@ -65,8 +65,8 @@ func (c *compiler) Compile(policy v1alpha1.AuthorizationPolicy) (PolicyFunc, err
 		if err := issues.Err(); err != nil {
 			return nil, err
 		}
-		if !ast.OutputType().IsExactType(model.ResponseType) {
-			return nil, errors.New("rule output is expected to be of type model.Response")
+		if !ast.OutputType().IsExactType(auth.ResponseType) {
+			return nil, errors.New("rule output is expected to be of type auth.Response")
 		}
 		prog, err := env.Program(ast)
 		if err != nil {
@@ -74,7 +74,7 @@ func (c *compiler) Compile(policy v1alpha1.AuthorizationPolicy) (PolicyFunc, err
 		}
 		authorizations = append(authorizations, prog)
 	}
-	eval := func(r *http.Request) (*model.Response, error) {
+	eval := func(r *http.Request) (*auth.Response, error) {
 		vars := lazy.NewMapValue(engine.VariablesType)
 		data := map[string]any{
 			ObjectKey:    r,
@@ -104,7 +104,7 @@ func (c *compiler) Compile(policy v1alpha1.AuthorizationPolicy) (PolicyFunc, err
 				continue
 			}
 			// try to convert to a check response
-			response, err := utils.ConvertToNative[*model.Response](out)
+			response, err := utils.ConvertToNative[*auth.Response](out)
 			// check error
 			if err != nil {
 				return nil, err
@@ -118,7 +118,7 @@ func (c *compiler) Compile(policy v1alpha1.AuthorizationPolicy) (PolicyFunc, err
 		}
 		return nil, nil
 	}
-	return func(r *http.Request) (*model.Response, error) {
+	return func(r *http.Request) (*auth.Response, error) {
 		response, err := eval(r)
 		if err != nil && policy.Spec.GetFailurePolicy() == admissionregistrationv1.Fail {
 			return nil, err

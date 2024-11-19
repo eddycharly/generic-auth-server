@@ -53,7 +53,7 @@ func (*lib) extendEnv(env *cel.Env) (*cel.Env, error) {
 	return env.Extend(options...)
 }
 
-func decode(adapter types.Adapter) func(token ref.Val, key ref.Val) ref.Val {
+func decode(adapter types.Adapter) func(ref.Val, ref.Val) ref.Val {
 	return func(token ref.Val, key ref.Val) ref.Val {
 		t, ok := token.(types.String)
 		if !ok {

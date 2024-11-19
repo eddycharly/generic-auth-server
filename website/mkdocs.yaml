@@ -21,9 +21,9 @@ nav:
     - cel-extensions/index.md
   #   - cel-extensions/envoy.md
     - cel-extensions/jwt.md
-# - Tutorials:
-#   - tutorials/index.md
-#   - tutorials/istio/index.md
+- Tutorials:
+  - tutorials/index.md
+  - tutorials/traefik/index.md
 # - Community:
 #   - community/index.md
 #   - Contributing: community/contribute.md

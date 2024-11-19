@@ -12,7 +12,6 @@ import (
 
 var (
 	stringListType = types.NewListType(types.StringType)
-	headerType     = types.NewMapType(types.StringType, stringListType)
 )
 
 type lib struct{}

@@ -24,4 +24,12 @@
          <loc>https://eddycharly.github.io/generic-auth-server/main/reference/apis/policy.v1alpha1/</loc>
          <lastmod>2024-11-19</lastmod>
     </url>
+    <url>
+         <loc>https://eddycharly.github.io/generic-auth-server/main/tutorials/</loc>
+         <lastmod>2024-11-19</lastmod>
+    </url>
+    <url>
+         <loc>https://eddycharly.github.io/generic-auth-server/main/tutorials/traefik/</loc>
+         <lastmod>2024-11-19</lastmod>
+    </url>
 </urlset>

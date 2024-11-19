@@ -1,11 +1,11 @@
 # site
-site_name: Kyverno Envoy Plugin
-site_url: https://kyverno.github.io/kyverno-envoy-plugin/
-site_description: Kyverno based authz in a mesh
+site_name: Generic auth server
+site_url: https://eddycharly.github.io/generic-auth-server/
+site_description: Generic policy based authentication/authorization server
 
 # repo
-repo_name: kyverno/kyverno-envoy-plugin
-repo_url: https://github.com/kyverno/kyverno-envoy-plugin
+repo_name: eddycharly/generic-auth-server
+repo_url: https://github.com/eddycharly/generic-auth-server
 
 # edit
 edit_uri: edit/main/website/docs/
@@ -31,7 +31,7 @@ extra:
     provider: mike
   social:
   - icon: fontawesome/brands/github
-    link: https://github.com/kyverno/kyverno-envoy-plugin
+    link: https://github.com/eddycharly/generic-auth-server
   - icon: fontawesome/brands/slack
     link: https://kubernetes.slack.com/archives/CLGR9BJU9
   - icon: fontawesome/brands/x-twitter
@@ -41,7 +41,7 @@ theme:
   name: material
   custom_dir: docs/overrides
   language: en
-  logo: static/logo.png
+  # logo: static/logo.png
   favicon: static/favicon.ico
   include_search_page: false
   search_index_only: true

@@ -172,7 +172,7 @@ codegen-schemas-json: codegen-schemas-openapi
 
 .PHONY: codegen
 codegen: ## Rebuild all generated code and docs
-# codegen: codegen-mkdocs
+codegen: codegen-mkdocs
 codegen: codegen-crds
 codegen: codegen-helm-crds
 codegen: codegen-helm-docs

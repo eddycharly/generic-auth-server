@@ -205,18 +205,18 @@ containers:
     # -- Container ports.
     ports:
     - containerPort: 9080
-      name: http
+      name: health
       protocol: TCP
     - containerPort: 9081
-      name: grpc
+      name: auth
       protocol: TCP
 
     # -- Container args.
     args:
       - serve
       - authz-server
-      - --http-address=:9080
-      - --grpc-address=:9081
+      - --health-address=:9080
+      - --auth-address=:9081
 
 service:
 

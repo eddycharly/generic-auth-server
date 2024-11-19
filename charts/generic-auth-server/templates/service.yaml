@@ -12,10 +12,10 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-  - name: grpc
+  - name: auth
     port: {{ .Values.service.port }}
     protocol: TCP
-    targetPort: grpc
+    targetPort: auth
     {{- if and (eq .Values.service.type "NodePort") (not (empty .Values.service.nodePort)) }}
     nodePort: {{ .Values.service.nodePort }}
     {{- end }}

@@ -1,0 +1,33 @@
+{{ template "chart.header" . }}
+{{ template "chart.deprecationWarning" . }}
+{{ template "chart.description" . }}
+
+{{ template "chart.badgesSection" . }}
+
+A policy based authentication/authorization server.
+
+## Overview 
+
+## Installing the Chart
+
+Add `generic-auth-server` Helm repository:
+
+```shell
+helm repo add generic-auth-server https://eddycharly.github.io/generic-auth-server/
+```
+
+Install `generic-auth-server` Helm chart:
+
+```shell
+helm install generic-auth-server --namespace kyverno --create-namespace generic-auth-server/generic-auth-server
+```
+
+{{ template "chart.valuesSection" . }}
+
+{{ template "chart.sourcesSection" . }}
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.maintainersSection" . }}
+
+{{ template "helm-docs.versionFooter" . }}

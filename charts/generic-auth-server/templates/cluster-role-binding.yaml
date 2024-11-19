@@ -1,0 +1,16 @@
+{{- if .Values.rbac.create -}}
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ template "generic-auth-server.name" . }}
+  namespace: {{ template "kyverno.lib.namespace" . }}
+  labels:
+    {{- include "generic-auth-server.labels" . | nindent 4 }}
+roleRef:
+  kind: ClusterRole
+  name: {{ template "generic-auth-server.name" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ template "generic-auth-server.service-account.name" . }}
+    namespace: {{ template "kyverno.lib.namespace" . }}
+{{- end -}}

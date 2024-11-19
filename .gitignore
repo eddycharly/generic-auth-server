@@ -1,0 +1,8 @@
+/.cache/
+/.certs/
+/.temp/
+/.tools/
+/.venv/
+/charts/*/charts
+/generic-auth-server
+/website/site/

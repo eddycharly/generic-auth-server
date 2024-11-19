@@ -1,0 +1,11 @@
+apiVersion: v2
+name: kyverno-lib
+
+type: library
+version: 0.0.0
+appVersion: latest
+kubeVersion: ">=1.25.0-0"
+
+maintainers:
+  - name: Kyverno
+    url: https://kyverno.io/

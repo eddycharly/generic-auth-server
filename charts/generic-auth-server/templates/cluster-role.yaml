@@ -1,0 +1,18 @@
+{{- if .Values.rbac.create -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+metadata:
+  name: {{ template "generic-auth-server.name" . }}
+  labels:
+    {{- include "generic-auth-server.labels" . | nindent 4 }}
+rules:
+- apiGroups:
+  - generic.kyverno.io
+  resources:
+  - authorizationpolicies
+  verbs:
+  - get
+  - list
+  - watch
+{{- end -}}

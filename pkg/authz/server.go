@@ -19,6 +19,8 @@ func NewHttpServer(addr, certFile, keyFile string, provider policy.Provider) ser
 			policies, err := provider.CompiledPolicies(ctx)
 			if err != nil {
 				w.WriteHeader(http.StatusInternalServerError)
+				fmt.Println(err)
+				return
 			}
 			// iterate over policies
 			for _, policy := range policies {
@@ -27,6 +29,8 @@ func NewHttpServer(addr, certFile, keyFile string, provider policy.Provider) ser
 				// return error if any
 				if err != nil {
 					w.WriteHeader(http.StatusInternalServerError)
+					fmt.Println(err)
+					return
 				}
 				// if the reponse returned by the policy evaluation was not nil, return
 				if response != nil {
@@ -37,6 +41,7 @@ func NewHttpServer(addr, certFile, keyFile string, provider policy.Provider) ser
 					if _, err := w.Write(response.Body); err != nil {
 						fmt.Println(err)
 					}
+					return
 				}
 			}
 			// we didn't have a response

@@ -17,10 +17,10 @@ nav:
   - reference/json-schemas.md
   - APIs:
     - v1alpha1: reference/apis/policy.v1alpha1.md
-  # - CEL extensions:
-  #   - cel-extensions/index.md
+  - CEL extensions:
+    - cel-extensions/index.md
   #   - cel-extensions/envoy.md
-  #   - cel-extensions/jwt.md
+    - cel-extensions/jwt.md
 # - Tutorials:
 #   - tutorials/index.md
 #   - tutorials/istio/index.md

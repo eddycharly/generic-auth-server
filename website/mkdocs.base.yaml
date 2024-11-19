@@ -1,0 +1,142 @@
+# site
+site_name: Kyverno Envoy Plugin
+site_url: https://kyverno.github.io/kyverno-envoy-plugin/
+site_description: Kyverno based authz in a mesh
+
+# repo
+repo_name: kyverno/kyverno-envoy-plugin
+repo_url: https://github.com/kyverno/kyverno-envoy-plugin
+
+# edit
+edit_uri: edit/main/website/docs/
+
+# copyright
+copyright: Made with ❤️ by Kyverno contributors.
+
+# strictness
+strict: true
+
+# style
+extra_css:
+- static/extra.css
+
+# javascript
+extra_javascript:
+- path: static/repo-card.js
+  defer: true
+
+# version
+extra:
+  version:
+    provider: mike
+  social:
+  - icon: fontawesome/brands/github
+    link: https://github.com/kyverno/kyverno-envoy-plugin
+  - icon: fontawesome/brands/slack
+    link: https://kubernetes.slack.com/archives/CLGR9BJU9
+  - icon: fontawesome/brands/x-twitter
+    link: https://twitter.com/kyverno
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  language: en
+  logo: static/logo.png
+  favicon: static/favicon.ico
+  include_search_page: false
+  search_index_only: true
+  features:
+  - announce.dismiss
+  - search.suggest
+  - search.highlight
+  - search.share
+  - content.code.copy
+  - content.action.edit
+  - content.action.view
+  - navigation.footer
+  - navigation.instant
+  - navigation.tracking
+  - navigation.tabs
+  # - navigation.tabs.sticky
+  - navigation.sections
+  - navigation.indexes
+  - navigation.top
+  palette:
+     # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: light blue
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+plugins:
+- search
+# - redirects:
+#     redirect_maps:
+#       discord.md: https://discord.gg/RGEBtg8vQ6
+#       github.md: https://github.com/goreleaser
+#       linkedin.md: https://www.linkedin.com/company/goreleaser/
+#       mastodon.md: https://fosstodon.org/@goreleaser
+#       twitter.md: https://twitter.com/goreleaser
+#       d.md: https://discord.gg/RGEBtg8vQ6
+#       g.md: https://github.com/goreleaser
+#       l.md: https://www.linkedin.com/company/goreleaser/
+#       m.md: https://fosstodon.org/@goreleaser
+#       t.md: https://twitter.com/goreleaser
+#       "customization/build.md": customization/builds.md
+- minify:
+    minify_html: true
+- include-markdown
+- tags
+- social
+
+markdown_extensions:
+# Python Markdown
+- abbr
+- admonition
+- attr_list
+- def_list
+- footnotes
+- md_in_html
+- toc:
+    permalink: true
+# Python Markdown Extensions
+- pymdownx.arithmatex:
+    generic: true
+- pymdownx.betterem:
+    smart_enable: all
+- pymdownx.caret
+- pymdownx.details
+- pymdownx.emoji:
+    emoji_index: !!python/name:material.extensions.emoji.twemoji
+    emoji_generator: !!python/name:material.extensions.emoji.to_svg
+- pymdownx.highlight
+- pymdownx.inlinehilite
+- pymdownx.keys
+- pymdownx.mark
+- pymdownx.smartsymbols
+- pymdownx.superfences:
+    custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_code_format
+- pymdownx.tabbed:
+    alternate_style: true
+- pymdownx.tasklist:
+    custom_checkbox: true
+- pymdownx.tilde

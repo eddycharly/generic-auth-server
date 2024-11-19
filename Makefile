@@ -176,7 +176,7 @@ codegen: ## Rebuild all generated code and docs
 codegen: codegen-crds
 codegen: codegen-helm-crds
 codegen: codegen-helm-docs
-# codegen: codegen-api-docs
+codegen: codegen-api-docs
 codegen: codegen-schemas-openapi
 codegen: codegen-schemas-json
 

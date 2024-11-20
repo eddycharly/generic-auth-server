@@ -48,7 +48,8 @@ Now deploy the Generic Auth Server.
 ```bash
 # deploy the generic auth server
 helm install generic-auth-server --namespace kyverno --create-namespace \
-  --wait --repo https://eddycharly.github.io/generic-auth-server generic-auth-server
+  --wait --repo https://eddycharly.github.io/generic-auth-server \
+  generic-auth-server
 ```
 
 ### Configure the ForwardAuth middleware

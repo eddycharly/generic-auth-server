@@ -15,6 +15,8 @@ import (
 	"k8s.io/apimachinery/pkg/util/wait"
 	"k8s.io/client-go/tools/clientcmd"
 	ctrl "sigs.k8s.io/controller-runtime"
+	"sigs.k8s.io/controller-runtime/pkg/log"
+	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 )
 
 func Command() *cobra.Command {
@@ -29,6 +31,7 @@ func Command() *cobra.Command {
 		Use:   "serve",
 		Short: "Start the authz server",
 		RunE: func(cmd *cobra.Command, args []string) error {
+			log.SetLogger(zap.New())
 			// setup signals aware context
 			return signals.Do(context.Background(), func(ctx context.Context) error {
 				// track errors

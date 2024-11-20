@@ -214,7 +214,6 @@ containers:
     # -- Container args.
     args:
       - serve
-      - authz-server
       - --health-address=:9080
       - --auth-address=:9081
 

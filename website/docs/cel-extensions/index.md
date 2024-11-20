@@ -4,8 +4,8 @@ The CEL engine used to evaluate variables and authorization rules has been exten
 
 ## Envoy plugin libraries
 
-- [Auth]()
-- [Http]()
+- [Auth](./auth.md)
+- [Http](./http.md)
 - [Jwt](./jwt.md)
 
 ## Common libraries

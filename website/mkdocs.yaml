@@ -5,7 +5,7 @@ nav:
 - Getting started:
   - quick-start/index.md
   - quick-start/install.md
-#   - quick-start/next-steps.md
+  - quick-start/next-steps.md
 - Policies:
   - policies/index.md
   - policies/failure-policy.md

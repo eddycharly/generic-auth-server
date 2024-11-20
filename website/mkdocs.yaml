@@ -19,7 +19,8 @@ nav:
     - v1alpha1: reference/apis/policy.v1alpha1.md
   - CEL extensions:
     - cel-extensions/index.md
-  #   - cel-extensions/envoy.md
+    - cel-extensions/auth.md
+    - cel-extensions/http.md
     - cel-extensions/jwt.md
 - Tutorials:
   - tutorials/index.md

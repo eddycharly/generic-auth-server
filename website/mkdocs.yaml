@@ -7,11 +7,11 @@ nav:
 #   - quick-start/authz-server.md
 #   - quick-start/sidecar-injector.md
 #   - quick-start/next-steps.md
-# - Policies:
-#   - policies/index.md
-#   - policies/failure-policy.md
-#   - policies/variables.md
-#   - policies/authorization-rules.md
+- Policies:
+  - policies/index.md
+  - policies/failure-policy.md
+  - policies/variables.md
+  - policies/authorization-rules.md
 - Reference:
   - reference/index.md
   - reference/json-schemas.md

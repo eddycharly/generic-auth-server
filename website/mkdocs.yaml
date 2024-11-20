@@ -5,7 +5,6 @@ nav:
 - Getting started:
   - quick-start/index.md
   - quick-start/install.md
-#   - quick-start/sidecar-injector.md
 #   - quick-start/next-steps.md
 - Policies:
   - policies/index.md

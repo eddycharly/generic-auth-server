@@ -2,9 +2,9 @@ INHERIT: ./mkdocs.base.yaml
 
 nav:
 - Home: index.md
-# - Quick start:
-#   - quick-start/index.md
-#   - quick-start/authz-server.md
+- Getting started:
+  - quick-start/index.md
+  - quick-start/install.md
 #   - quick-start/sidecar-injector.md
 #   - quick-start/next-steps.md
 - Policies:

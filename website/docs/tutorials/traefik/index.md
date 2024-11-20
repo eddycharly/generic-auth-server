@@ -190,7 +190,7 @@ EOF
 
 ## Testing
 
-At this point we have deployed and configured Traefik, the Generic Auth Server, a sample application, and an authorization policies.
+At this point we have deployed and configured Traefik, the Generic Auth Server, a sample application, and an authorization policy.
 
 ### Start an in-cluster shell
 

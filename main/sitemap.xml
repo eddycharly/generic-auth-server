@@ -9,6 +9,14 @@
          <lastmod>2024-11-20</lastmod>
     </url>
     <url>
+         <loc>https://eddycharly.github.io/generic-auth-server/main/cel-extensions/auth/</loc>
+         <lastmod>2024-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://eddycharly.github.io/generic-auth-server/main/cel-extensions/http/</loc>
+         <lastmod>2024-11-20</lastmod>
+    </url>
+    <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/cel-extensions/jwt/</loc>
          <lastmod>2024-11-20</lastmod>
     </url>

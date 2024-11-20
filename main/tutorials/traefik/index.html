@@ -15,7 +15,8 @@ helm<span class=w> </span>install<span class=w> </span>traefik<span class=w> </s
 <span class=s>EOF</span>
 </code></pre></div> <h3 id=deploy-the-generic-auth-server>Deploy the Generic Auth Server<a class=headerlink href=#deploy-the-generic-auth-server title="Permanent link">&para;</a></h3> <p>Now deploy the Generic Auth Server.</p> <div class=highlight><pre><span></span><code><span class=c1># deploy the generic auth server</span>
 helm<span class=w> </span>install<span class=w> </span>generic-auth-server<span class=w> </span>--namespace<span class=w> </span>kyverno<span class=w> </span>--create-namespace<span class=w> </span><span class=se>\</span>
-<span class=w>  </span>--wait<span class=w> </span>--repo<span class=w> </span>https://eddycharly.github.io/generic-auth-server<span class=w> </span>generic-auth-server
+<span class=w>  </span>--wait<span class=w> </span>--repo<span class=w> </span>https://eddycharly.github.io/generic-auth-server<span class=w> </span><span class=se>\</span>
+<span class=w>  </span>generic-auth-server
 </code></pre></div> <h3 id=configure-the-forwardauth-middleware>Configure the ForwardAuth middleware<a class=headerlink href=#configure-the-forwardauth-middleware title="Permanent link">&para;</a></h3> <p>The <a href=https://doc.traefik.io/traefik/middlewares/http/forwardauth/ >ForwardAuth middleware</a> will delegate authorization decisions to the Generic Auth Server.</p> <div class=highlight><pre><span></span><code><span class=c1># configure the forward auth middleware</span>
 kubectl<span class=w> </span>apply<span class=w> </span>-n<span class=w> </span>traefik<span class=w> </span>-f<span class=w> </span>-<span class=w> </span><span class=s>&lt;&lt;EOF</span>
 <span class=s>apiVersion: traefik.io/v1alpha1</span>

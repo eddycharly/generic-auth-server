@@ -2,34 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/</loc>
-         <lastmod>2024-11-19</lastmod>
+         <lastmod>2024-11-20</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/cel-extensions/</loc>
-         <lastmod>2024-11-19</lastmod>
+         <lastmod>2024-11-20</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/cel-extensions/jwt/</loc>
-         <lastmod>2024-11-19</lastmod>
+         <lastmod>2024-11-20</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/reference/</loc>
-         <lastmod>2024-11-19</lastmod>
+         <lastmod>2024-11-20</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/reference/json-schemas/</loc>
-         <lastmod>2024-11-19</lastmod>
+         <lastmod>2024-11-20</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/reference/apis/policy.v1alpha1/</loc>
-         <lastmod>2024-11-19</lastmod>
+         <lastmod>2024-11-20</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/tutorials/</loc>
-         <lastmod>2024-11-19</lastmod>
+         <lastmod>2024-11-20</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/tutorials/traefik/</loc>
-         <lastmod>2024-11-19</lastmod>
+         <lastmod>2024-11-20</lastmod>
     </url>
 </urlset>

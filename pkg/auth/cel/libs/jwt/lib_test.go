@@ -3,7 +3,7 @@ package jwt
 import (
 	"testing"
 
-	"github.com/eddycharly/generic-auth-server/pkg/authz/cel/utils"
+	"github.com/eddycharly/generic-auth-server/pkg/auth/cel/utils"
 	"github.com/google/cel-go/cel"
 	"github.com/google/cel-go/common/types"
 	"github.com/google/cel-go/common/types/ref"

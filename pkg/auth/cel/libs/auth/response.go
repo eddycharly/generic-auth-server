@@ -3,7 +3,7 @@ package auth
 import (
 	"net/http"
 
-	"github.com/eddycharly/generic-auth-server/pkg/authz/model"
+	"github.com/eddycharly/generic-auth-server/pkg/auth/model"
 	"github.com/google/cel-go/common/types"
 )
 

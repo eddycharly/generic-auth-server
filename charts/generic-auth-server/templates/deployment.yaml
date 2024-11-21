@@ -75,6 +75,10 @@ spec:
           {{- tpl (toYaml .) $ | nindent 10 }}
         {{- end }}
       serviceAccountName: {{ template "generic-auth-server.service-account.name" . }}
+      volumes:
+        - name: certs
+          secret:
+            secretName: {{ template "generic-auth-server.name" . }}
       containers:
         {{- with .Values.containers.server }}
         - name: server
@@ -108,4 +112,8 @@ spec:
           args:
             {{- tpl (toYaml .) $ | nindent 12 }}
           {{- end }}
+          volumeMounts:
+            - name: certs
+              mountPath: /tmp/k8s-webhook-server/serving-certs
+              readOnly: true
         {{- end }}

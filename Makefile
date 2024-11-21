@@ -289,6 +289,21 @@ kind-load-image: $(KIND)
 	@$(KIND) load docker-image $(KO_REGISTRY)/$(PACKAGE):$(GIT_SHA)
 
 ################
+# CERTIFICATES #
+################
+
+.PHONY: generate-certs
+generate-certs: ## Generate certificates
+generate-certs:
+	@echo Generating certificates... >&2
+	@rm -rf .certs
+	@mkdir -p .certs
+	@openssl req -new -x509  \
+        -subj "/CN=kyverno-sidecar-injector.kyverno.svc" \
+        -addext "subjectAltName = DNS:kyverno-sidecar-injector.kyverno.svc" \
+        -nodes -newkey rsa:4096 -keyout .certs/tls.key -out .certs/tls.crt 
+
+################
 # CERT MANAGER #
 ################
 
@@ -313,13 +328,16 @@ install-cluster-issuer:
 install-generic-auth-server: ## Install generic-auth-server chart
 install-generic-auth-server: kind-load-image
 install-generic-auth-server: $(HELM)
-	@echo Build generic-auth-server dependecy... >&2
+	@echo Build generic-auth-server dependency... >&2
 	@$(HELM) dependency build --skip-refresh ./charts/generic-auth-server
 	@echo Install generic-auth-server chart... >&2
 	@$(HELM) upgrade --install generic-auth-server --namespace kyverno --create-namespace --wait ./charts/generic-auth-server \
 		--set containers.server.image.registry=$(KO_REGISTRY) \
 		--set containers.server.image.repository=$(PACKAGE) \
-		--set containers.server.image.tag=$(GIT_SHA)
+		--set containers.server.image.tag=$(GIT_SHA) \
+		--set certificates.certManager.issuerRef.group=cert-manager.io \
+		--set certificates.certManager.issuerRef.kind=ClusterIssuer \
+		--set certificates.certManager.issuerRef.name=selfsigned-issuer
 
 ########
 # HELP #

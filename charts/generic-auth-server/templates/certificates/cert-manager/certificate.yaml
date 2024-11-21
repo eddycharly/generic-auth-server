@@ -1,0 +1,17 @@
+{{- if .Values.certificates.certManager -}}
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ template "generic-auth-server.name" . }}
+  namespace: {{ template "kyverno.lib.namespace" . }}
+  labels:
+    {{- include "generic-auth-server.labels" . | nindent 4 }}
+spec:
+  secretName: {{ template "generic-auth-server.name" . }}
+  dnsNames:
+    - {{ printf "%s.%s.svc" (include "generic-auth-server.name" .) (include "kyverno.lib.namespace" .) }}
+  {{- with .Values.certificates.certManager.issuerRef }}
+  issuerRef:
+    {{- tpl (toYaml .) $ | nindent 4 }}
+  {{- end }}
+{{- end }}

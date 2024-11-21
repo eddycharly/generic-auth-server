@@ -31,7 +31,7 @@ func Command() *cobra.Command {
 		Use:   "serve",
 		Short: "Start the authz server",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			log.SetLogger(zap.New())
+			log.SetLogger(zap.New(zap.UseDevMode(true)))
 			// setup signals aware context
 			return signals.Do(context.Background(), func(ctx context.Context) error {
 				// track errors

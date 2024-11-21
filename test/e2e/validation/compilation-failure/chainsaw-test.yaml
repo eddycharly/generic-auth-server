@@ -1,0 +1,15 @@
+apiVersion: chainsaw.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: compilation-failure
+spec:
+  steps: 
+  - try:
+    - create:
+        file: ./policy.yaml
+        expect:
+        - check:
+            ($error): |-
+              admission webhook "generic-auth-server.kyverno.svc" denied the request: ERROR: <input>:1:31: found no matching overload for '_+_' applied to '(model.Response, int)'
+               | auth.Response(401, "bye bye") + 1
+               | ..............................^

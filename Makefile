@@ -182,6 +182,7 @@ codegen: codegen-schemas-json
 
 .PHONY: verify-codegen
 verify-codegen: ## Verify all generated code and docs are up to date
+verify-codegen: go-mod-tidy
 verify-codegen: codegen
 	@echo Checking codegen is up to date... >&2
 	@git --no-pager diff -- .
@@ -203,9 +204,11 @@ vet: ## Run go vet
 	@echo Go vet... >&2
 	@go vet ./...
 
-#########
-# BUILD #
-#########
+.PHONY: go-mod-tidy
+go-mod-tidy: ## Run go mod tidy
+go-mod-tidy:
+	@echo Run go mod tidy... >&2
+	@go mod tidy
 
 .PHONY: build
 build: ## Build
@@ -284,9 +287,16 @@ kind-create-cluster: $(KIND)
 
 .PHONY: kind-load-image
 kind-load-image: ## Build image and load it in kind cluster
+kind-load-image: ko-build
 kind-load-image: $(KIND)
 	@echo Load image in kind... >&2
 	@$(KIND) load docker-image $(KO_REGISTRY)/$(PACKAGE):$(GIT_SHA)
+
+.PHONY: kind-load-archive
+kind-load-archive: ## Load image archive in kind cluster
+kind-load-archive: $(KIND)
+	@echo Load image archive in kind... >&2
+	@$(KIND) load image-archive image.tar
 
 ################
 # CERTIFICATES #
@@ -316,6 +326,7 @@ install-cert-manager: $(HELM)
 
 .PHONY: install-cluster-issuer
 install-cluster-issuer: ## Install cert-manager cluster issuer
+install-cluster-issuer: install-cert-manager
 install-cluster-issuer:
 	@echo Install cert-manager cluster issuer... >&2
 	@kubectl apply -f .manifests/cert-manager/cluster-issuer.yaml
@@ -324,13 +335,12 @@ install-cluster-issuer:
 # HELM #
 ########
 
-.PHONY: install-generic-auth-server
-install-generic-auth-server: ## Install generic-auth-server chart
-install-generic-auth-server: kind-load-image
-install-generic-auth-server: $(HELM)
+.PHONY: deploy-generic-auth-server
+deploy-generic-auth-server: ## Deploy generic-auth-server chart
+deploy-generic-auth-server: $(HELM)
 	@echo Build generic-auth-server dependency... >&2
 	@$(HELM) dependency build --skip-refresh ./charts/generic-auth-server
-	@echo Install generic-auth-server chart... >&2
+	@echo Deploy generic-auth-server chart... >&2
 	@$(HELM) upgrade --install generic-auth-server --namespace kyverno --create-namespace --wait ./charts/generic-auth-server \
 		--set containers.server.image.registry=$(KO_REGISTRY) \
 		--set containers.server.image.repository=$(PACKAGE) \
@@ -338,6 +348,13 @@ install-generic-auth-server: $(HELM)
 		--set certificates.certManager.issuerRef.group=cert-manager.io \
 		--set certificates.certManager.issuerRef.kind=ClusterIssuer \
 		--set certificates.certManager.issuerRef.name=selfsigned-issuer
+
+.PHONY: install-generic-auth-server
+install-generic-auth-server: ## Install generic-auth-server chart
+install-generic-auth-server: kind-load-image
+install-generic-auth-server: install-cluster-issuer
+install-generic-auth-server: $(HELM)
+	@$(MAKE) deploy-generic-auth-server
 
 ########
 # HELP #

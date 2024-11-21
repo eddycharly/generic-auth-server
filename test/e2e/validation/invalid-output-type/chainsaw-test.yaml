@@ -10,4 +10,4 @@ spec:
         expect:
         - check:
             ($error): |-
-              admission webhook "generic-auth-server.kyverno.svc" denied the request: rule output is expected to be of type auth.Response
+              admission webhook "generic-auth-server.kyverno.svc" denied the request: AuthorizationPolicy.generic.kyverno.io "invalid" is invalid: spec.authorizations[0].expression: Invalid value: "'bye'\n": rule output is expected to be of type auth.Response

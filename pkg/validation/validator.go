@@ -5,18 +5,20 @@ import (
 	"fmt"
 
 	"github.com/eddycharly/generic-auth-server/apis/v1alpha1"
+	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/runtime"
+	"k8s.io/apimachinery/pkg/util/validation/field"
 	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
 )
 
-func NewValidator(compile func(*v1alpha1.AuthorizationPolicy) error) *validator {
+func NewValidator(compile func(*v1alpha1.AuthorizationPolicy) field.ErrorList) *validator {
 	return &validator{
 		compile: compile,
 	}
 }
 
 type validator struct {
-	compile func(*v1alpha1.AuthorizationPolicy) error
+	compile func(*v1alpha1.AuthorizationPolicy) field.ErrorList
 }
 
 func (v *validator) ValidateCreate(ctx context.Context, obj runtime.Object) (admission.Warnings, error) {
@@ -40,11 +42,12 @@ func (*validator) ValidateDelete(ctx context.Context, obj runtime.Object) (admis
 }
 
 func (v *validator) validate(policy *v1alpha1.AuthorizationPolicy) error {
-	return v.compile(policy)
-	// var allErrs field.ErrorList
-	// return apierrors.NewInvalid(
-	// 	v1alpha1.SchemeGroupVersion.WithKind("AuthorizationPolicy").GroupKind(),
-	// 	policy.Name,
-	// 	allErrs,
-	// )
+	if allErrs := v.compile(policy); len(allErrs) > 0 {
+		return apierrors.NewInvalid(
+			v1alpha1.SchemeGroupVersion.WithKind("AuthorizationPolicy").GroupKind(),
+			policy.Name,
+			allErrs,
+		)
+	}
+	return nil
 }

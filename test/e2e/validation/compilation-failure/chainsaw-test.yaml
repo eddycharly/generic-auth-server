@@ -10,6 +10,6 @@ spec:
         expect:
         - check:
             ($error): |-
-              admission webhook "generic-auth-server.kyverno.svc" denied the request: ERROR: <input>:1:31: found no matching overload for '_+_' applied to '(model.Response, int)'
+              admission webhook "generic-auth-server.kyverno.svc" denied the request: AuthorizationPolicy.generic.kyverno.io "invalid" is invalid: spec.authorizations[0].expression: Invalid value: "auth.Response(401, \"bye bye\") + 1\n": ERROR: <input>:1:31: found no matching overload for '_+_' applied to '(model.Response, int)'
                | auth.Response(401, "bye bye") + 1
                | ..............................^

@@ -9,6 +9,7 @@ import (
 	"github.com/eddycharly/generic-auth-server/pkg/validation"
 	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/types"
+	"k8s.io/apimachinery/pkg/util/validation/field"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 )
@@ -22,7 +23,7 @@ func NewKubeProvider(mgr ctrl.Manager, compiler Compiler) (Provider, error) {
 	if err := ctrl.NewControllerManagedBy(mgr).For(&v1alpha1.AuthorizationPolicy{}).Complete(r); err != nil {
 		return nil, fmt.Errorf("failed to create controller: %w", err)
 	}
-	compileFunc := func(policy *v1alpha1.AuthorizationPolicy) error {
+	compileFunc := func(policy *v1alpha1.AuthorizationPolicy) field.ErrorList {
 		_, err := compiler.Compile(policy)
 		fmt.Println("validating policy", policy.Name, err)
 		return err
@@ -61,11 +62,11 @@ func (r *policyReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctr
 	if err != nil {
 		return ctrl.Result{}, err
 	}
-	compiled, err := r.compiler.Compile(&policy)
-	if err != nil {
-		fmt.Println(err)
-		// TODO: not sure we should retry it
-		return ctrl.Result{}, err
+	compiled, errs := r.compiler.Compile(&policy)
+	if len(errs) > 0 {
+		fmt.Println(errs)
+		// No need to retry it
+		return ctrl.Result{}, nil
 	}
 	r.lock.Lock()
 	defer r.lock.Unlock()

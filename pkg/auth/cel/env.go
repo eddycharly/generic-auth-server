@@ -1,9 +1,9 @@
 package cel
 
 import (
-	"github.com/eddycharly/generic-auth-server/pkg/authz/cel/libs/auth"
-	"github.com/eddycharly/generic-auth-server/pkg/authz/cel/libs/http"
-	"github.com/eddycharly/generic-auth-server/pkg/authz/cel/libs/jwt"
+	"github.com/eddycharly/generic-auth-server/pkg/auth/cel/libs/auth"
+	"github.com/eddycharly/generic-auth-server/pkg/auth/cel/libs/http"
+	"github.com/eddycharly/generic-auth-server/pkg/auth/cel/libs/jwt"
 	"github.com/google/cel-go/cel"
 	"github.com/google/cel-go/ext"
 	"k8s.io/apiserver/pkg/cel/library"

@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/eddycharly/generic-auth-server/apis/v1alpha1"
-	"github.com/eddycharly/generic-auth-server/pkg/authz"
+	"github.com/eddycharly/generic-auth-server/pkg/auth"
 	"github.com/eddycharly/generic-auth-server/pkg/healthz"
 	"github.com/eddycharly/generic-auth-server/pkg/policy"
 	"github.com/eddycharly/generic-auth-server/pkg/signals"
@@ -82,7 +82,7 @@ func Command() *cobra.Command {
 					}
 					// create servers
 					health := healthz.NewServer(healthAddress, healthCertFile, healthKeyFile)
-					auth := authz.NewHttpServer(authAddress, authCertFile, authKeyFile, provider)
+					auth := auth.NewHttpServer(authAddress, authCertFile, authKeyFile, provider)
 					// run servers
 					group.StartWithContext(ctx, func(ctx context.Context) {
 						// cancel context at the end

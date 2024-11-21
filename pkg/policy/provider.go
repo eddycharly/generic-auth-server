@@ -6,6 +6,7 @@ import (
 	"sync"
 
 	"github.com/eddycharly/generic-auth-server/apis/v1alpha1"
+	"github.com/eddycharly/generic-auth-server/pkg/validation"
 	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/types"
 	ctrl "sigs.k8s.io/controller-runtime"
@@ -21,7 +22,12 @@ func NewKubeProvider(mgr ctrl.Manager, compiler Compiler) (Provider, error) {
 	if err := ctrl.NewControllerManagedBy(mgr).For(&v1alpha1.AuthorizationPolicy{}).Complete(r); err != nil {
 		return nil, fmt.Errorf("failed to create controller: %w", err)
 	}
-	if err := ctrl.NewWebhookManagedBy(mgr).For(&v1alpha1.AuthorizationPolicy{}).WithValidator(&v1alpha1.AuthorizationPolicy{}).Complete(); err != nil {
+	compileFunc := func(policy *v1alpha1.AuthorizationPolicy) error {
+		_, err := compiler.Compile(policy)
+		fmt.Println("validating policy", policy.Name, err)
+		return err
+	}
+	if err := ctrl.NewWebhookManagedBy(mgr).For(&v1alpha1.AuthorizationPolicy{}).WithValidator(validation.NewValidator(compileFunc)).Complete(); err != nil {
 		return nil, fmt.Errorf("failed to create webhook: %w", err)
 	}
 	return r, nil
@@ -55,7 +61,7 @@ func (r *policyReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctr
 	if err != nil {
 		return ctrl.Result{}, err
 	}
-	compiled, err := r.compiler.Compile(policy)
+	compiled, err := r.compiler.Compile(&policy)
 	if err != nil {
 		fmt.Println(err)
 		// TODO: not sure we should retry it

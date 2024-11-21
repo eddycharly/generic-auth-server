@@ -1,12 +1,8 @@
 package v1alpha1
 
 import (
-	"context"
-
 	admissionregistrationv1 "k8s.io/api/admissionregistration/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"k8s.io/apimachinery/pkg/runtime"
-	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
 )
 
 // +genclient
@@ -20,18 +16,6 @@ type AuthorizationPolicy struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	Spec              AuthorizationPolicySpec `json:"spec"`
-}
-
-func (*AuthorizationPolicy) ValidateCreate(ctx context.Context, obj runtime.Object) (admission.Warnings, error) {
-	return nil, nil
-}
-
-func (*AuthorizationPolicy) ValidateUpdate(ctx context.Context, oldObj, newObj runtime.Object) (admission.Warnings, error) {
-	return nil, nil
-}
-
-func (*AuthorizationPolicy) ValidateDelete(ctx context.Context, obj runtime.Object) (admission.Warnings, error) {
-	return nil, nil
 }
 
 // AuthorizationPolicySpec defines the spec of an authorization policy

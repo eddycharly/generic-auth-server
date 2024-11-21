@@ -23,7 +23,7 @@ const (
 type PolicyFunc func(*http.Request) (*auth.Response, error)
 
 type Compiler interface {
-	Compile(v1alpha1.AuthorizationPolicy) (PolicyFunc, error)
+	Compile(*v1alpha1.AuthorizationPolicy) (PolicyFunc, error)
 }
 
 func NewCompiler() Compiler {
@@ -32,7 +32,7 @@ func NewCompiler() Compiler {
 
 type compiler struct{}
 
-func (c *compiler) Compile(policy v1alpha1.AuthorizationPolicy) (PolicyFunc, error) {
+func (c *compiler) Compile(policy *v1alpha1.AuthorizationPolicy) (PolicyFunc, error) {
 	variables := map[string]cel.Program{}
 	var authorizations []cel.Program
 	base, err := engine.NewEnv()

@@ -19,5 +19,9 @@ spec:
     {{- if and (eq .Values.service.type "NodePort") (not (empty .Values.service.nodePort)) }}
     nodePort: {{ .Values.service.nodePort }}
     {{- end }}
+  - name: webhook
+    port: 9443
+    protocol: TCP
+    targetPort: 9443
   selector:
     {{- include "generic-auth-server.labels.selector" . | nindent 4 }}

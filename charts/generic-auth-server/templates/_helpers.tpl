@@ -14,7 +14,7 @@
 {{- define "generic-auth-server.labels.selector" -}}
 {{- template "kyverno.lib.labels.merge" (list
   (include "kyverno.lib.labels.common.selector" .)
-  (include "kyverno.lib.labels.component" "authz-server")
+  (include "kyverno.lib.labels.component" "auth-server")
 ) -}}
 {{- end -}}
 

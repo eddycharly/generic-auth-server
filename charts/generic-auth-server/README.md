@@ -34,6 +34,8 @@ helm install generic-auth-server --namespace kyverno --create-namespace generic-
 | rbac.create | bool | `true` | Create RBAC resources |
 | rbac.serviceAccount.name | string | `nil` | The ServiceAccount name |
 | rbac.serviceAccount.annotations | object | `{}` | Annotations for the ServiceAccount |
+| certificates.static | object | `{}` | Static data to set in certificate secret |
+| certificates.certManager | object | `{}` | Infos for creating certificate with cert manager |
 | deployment.replicas | int | `nil` | Desired number of pods |
 | deployment.revisionHistoryLimit | int | `10` | The number of revisions to keep |
 | deployment.annotations | object | `{}` | Deployment annotations. |
@@ -67,6 +69,10 @@ helm install generic-auth-server --namespace kyverno --create-namespace generic-
 | service.type | string | `"ClusterIP"` | Service type. |
 | service.nodePort | string | `nil` | Service node port. Only used if `type` is `NodePort`. |
 | service.annotations | object | `{}` | Service annotations. |
+| webhook.annotations | object | `{}` | Webhook annotations |
+| webhook.failurePolicy | string | `"Fail"` | Webhook failure policy |
+| webhook.objectSelector | string | `nil` | Webhook object selector |
+| webhook.namespaceSelector | object | `{"matchExpressions":[{"key":"kyverno-injection","operator":"In","values":["enabled"]}]}` | Webhook namespace selector |
 | pdb | string | `nil` |  |
 
 ## Source Code

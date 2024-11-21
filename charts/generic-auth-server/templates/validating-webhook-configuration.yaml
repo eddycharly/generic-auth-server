@@ -1,0 +1,47 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: {{ template "generic-auth-server.name" . }}
+  labels:
+    {{- include "generic-auth-server.labels" . | nindent 4 }}
+  {{- if (or .Values.certificates.certManager .Values.webhook.annotations) }}
+  annotations:
+    {{- with .Values.webhook.annotations }}
+    {{- tpl (toYaml .) $ | nindent 4 }}
+    {{- end }}
+    {{- if .Values.certificates.certManager }}
+    cert-manager.io/inject-ca-from: {{ printf "%s/%s" (include "kyverno.lib.namespace" .) (include "generic-auth-server.name" .) }}
+    {{- end }}
+  {{- end }}
+webhooks:
+- name: {{ printf "%s.%s.svc" (include "generic-auth-server.name" .) (include "kyverno.lib.namespace" .) }}
+  clientConfig:
+    service:
+      name: {{ template "generic-auth-server.name" . }}
+      namespace: {{ template "kyverno.lib.namespace" . }}
+      port: 9443
+      path: /validate-generic-kyverno-io-v1alpha1-authorizationpolicy
+    {{- if .Values.certificates.static }}
+    caBundle: {{ index .Values.certificates.static.crt | b64enc }}
+    {{- end }}
+  failurePolicy: {{ .Values.webhook.failurePolicy }}
+  sideEffects: None
+  admissionReviewVersions: [ v1 ]
+  rules:
+  - apiGroups:
+    - generic.kyverno.io
+    apiVersions:
+    - v1alpha1
+    resources:
+    - authorizationpolicies
+    operations:
+    - CREATE
+    - UPDATE
+  {{- with .Values.webhook.objectSelector }}
+  objectSelector:
+    {{- tpl (toYaml .) $ | nindent 6 }}
+  {{- end }}
+  {{- with .Values.webhook.namespaceSelector }}
+  namespaceSelector:
+    {{- tpl (toYaml .) $ | nindent 6 }}
+  {{- end }}

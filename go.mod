@@ -11,7 +11,7 @@ require (
 	gomodules.xyz/jsonpatch/v2 v2.4.0
 	google.golang.org/protobuf v1.35.1
 	k8s.io/api v0.31.2
-	k8s.io/apimachinery v0.31.2
+	k8s.io/apimachinery v0.31.3
 	k8s.io/apiserver v0.31.2
 	k8s.io/client-go v0.31.2
 	k8s.io/utils v0.0.0-20241104163129-6fe5fd82f078

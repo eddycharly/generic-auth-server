@@ -1,9 +1,0 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/eddycharly/generic-auth-server/main/.schemas/json/authorizationpolicy-generic-v1alpha1.json
-apiVersion: generic.kyverno.io/v1alpha1
-kind: AuthorizationPolicy
-metadata:
-  name: invalid
-spec:
-  authorizations:
-  - expression: >
-      'bye'

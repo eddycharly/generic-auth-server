@@ -19,7 +19,7 @@ type variablesProvider struct {
 func NewVariablesProvider(inner types.Provider) *variablesProvider {
 	return &variablesProvider{
 		inner:  inner,
-		fields: make(map[string]*types.Type),
+		fields: map[string]*types.Type{},
 	}
 }
 

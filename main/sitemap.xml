@@ -2,70 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/</loc>
-         <lastmod>2024-11-22</lastmod>
+         <lastmod>2024-11-25</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/cel-extensions/</loc>
-         <lastmod>2024-11-22</lastmod>
+         <lastmod>2024-11-25</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/cel-extensions/auth/</loc>
-         <lastmod>2024-11-22</lastmod>
+         <lastmod>2024-11-25</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/cel-extensions/http/</loc>
-         <lastmod>2024-11-22</lastmod>
+         <lastmod>2024-11-25</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/cel-extensions/jwt/</loc>
-         <lastmod>2024-11-22</lastmod>
+         <lastmod>2024-11-25</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/policies/</loc>
-         <lastmod>2024-11-22</lastmod>
+         <lastmod>2024-11-25</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/policies/authorization-rules/</loc>
-         <lastmod>2024-11-22</lastmod>
+         <lastmod>2024-11-25</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/policies/failure-policy/</loc>
-         <lastmod>2024-11-22</lastmod>
+         <lastmod>2024-11-25</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/policies/variables/</loc>
-         <lastmod>2024-11-22</lastmod>
+         <lastmod>2024-11-25</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/quick-start/</loc>
-         <lastmod>2024-11-22</lastmod>
+         <lastmod>2024-11-25</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/quick-start/install/</loc>
-         <lastmod>2024-11-22</lastmod>
+         <lastmod>2024-11-25</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/quick-start/next-steps/</loc>
-         <lastmod>2024-11-22</lastmod>
+         <lastmod>2024-11-25</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/reference/</loc>
-         <lastmod>2024-11-22</lastmod>
+         <lastmod>2024-11-25</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/reference/json-schemas/</loc>
-         <lastmod>2024-11-22</lastmod>
+         <lastmod>2024-11-25</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/reference/apis/policy.v1alpha1/</loc>
-         <lastmod>2024-11-22</lastmod>
+         <lastmod>2024-11-25</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/tutorials/</loc>
-         <lastmod>2024-11-22</lastmod>
+         <lastmod>2024-11-25</lastmod>
     </url>
     <url>
          <loc>https://eddycharly.github.io/generic-auth-server/main/tutorials/traefik/</loc>
-         <lastmod>2024-11-22</lastmod>
+         <lastmod>2024-11-25</lastmod>
     </url>
 </urlset>

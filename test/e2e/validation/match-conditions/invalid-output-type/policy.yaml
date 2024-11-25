@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=../../../../../.schemas/json/authorizationpolicy-generic-v1alpha1.json
+apiVersion: generic.kyverno.io/v1alpha1
+kind: AuthorizationPolicy
+metadata:
+  name: invalid
+spec:
+  matchConditions:
+  - name: bad
+    expression: >
+      'flop'
+  authorizations:
+  - expression: >
+      auth.Response(401, "bye bye")

@@ -6,8 +6,8 @@ import (
 
 	"github.com/eddycharly/generic-auth-server/apis/v1alpha1"
 	"github.com/eddycharly/generic-auth-server/pkg/auth"
-	"github.com/eddycharly/generic-auth-server/pkg/healthz"
 	"github.com/eddycharly/generic-auth-server/pkg/policy"
+	healthz "github.com/eddycharly/generic-auth-server/pkg/probes"
 	"github.com/eddycharly/generic-auth-server/pkg/signals"
 	"github.com/spf13/cobra"
 	"go.uber.org/multierr"

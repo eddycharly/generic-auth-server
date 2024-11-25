@@ -1,4 +1,4 @@
-package healthz
+package probes
 
 import (
 	"context"
@@ -13,9 +13,9 @@ func NewServer(addr, certFile, keyFile string) server.ServerFunc {
 		// create mux
 		mux := http.NewServeMux()
 		// register health check
-		mux.Handle("GET /livez", handlers.Healthy(handlers.True))
+		mux.Handle("GET /livez", handlers.Healthy(True))
 		// register ready check
-		mux.Handle("GET /readyz", handlers.Ready(handlers.True))
+		mux.Handle("GET /readyz", handlers.Ready(True))
 		// create server
 		s := &http.Server{
 			Addr:    addr,

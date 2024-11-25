@@ -6,7 +6,7 @@ require (
 	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/google/cel-go v0.22.0
 	github.com/spf13/cobra v1.8.1
-	github.com/stretchr/testify v1.9.0
+	github.com/stretchr/testify v1.10.0
 	go.uber.org/multierr v1.11.0
 	gomodules.xyz/jsonpatch/v2 v2.4.0
 	google.golang.org/protobuf v1.35.1
